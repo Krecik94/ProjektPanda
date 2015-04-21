@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		rb = GetComponent<Rigidbody>();
+		//rb = GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
@@ -23,12 +23,12 @@ public class PlayerController : MonoBehaviour {
 
 	void FixedUpdate () {
 
-		moveVertical = Input.GetAxis("Jump");
+		/*moveVertical = Input.GetAxis("Jump");
 		strafe = Input.GetAxis("Horizontal");
 		turn = Input.GetAxis("Vertical");
 		Vector3 movement = new Vector3 (strafe, moveVertical, 0);
 		rb.AddForce(movement * speed);
-		rb.AddTorque(transform.up * torque * turn);
+		rb.AddTorque(transform.up * torque * turn);*/
 		
 	}
 }

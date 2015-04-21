@@ -16,7 +16,7 @@ public class PlayerCamera : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		offset = transform.position - player.transform.position;
-		lastRotation = player.transform.rotation;
+		//lastRotation = player.transform.rotation;
 		k = 0;
 	}
 	
@@ -24,12 +24,12 @@ public class PlayerCamera : MonoBehaviour {
 	void LateUpdate () {
 		dest = Input.GetAxis("Vertical");
 		transform.position = player.transform.position + offset;
-		if(dest > 0) k = 1;
-		else if(dest < 0) k = -1;
-			transform.RotateAround (player.transform.position,
-									transform.up,
-									k*Quaternion.Angle(player.transform.localRotation, lastRotation));
+		//if(dest > 0) k = 1;
+		//else if(dest < 0) k = -1;
+			//transform.RotateAround (player.transform.position,
+									//transform.up,
+									//k*Quaternion.Angle(player.transform.localRotation, lastRotation));
 		offset = transform.position - player.transform.position;
-		lastRotation = player.transform.rotation;
+		//lastRotation = player.transform.rotation;
 	}
 }
