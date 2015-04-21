@@ -2,9 +2,9 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class RArmMovement : MonoBehaviour {
-
-
+public class LArmMovement1 : MonoBehaviour {
+	
+	
 	public GameObject player;
 	private Vector3 offset;
 	private Vector3 difference;
@@ -16,41 +16,41 @@ public class RArmMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		offset = transform.position - player.transform.position;
-
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
-
+	
 	void FixedUpdate()
 	{
-
-
-		if (Input.GetKey (KeyCode.Mouse0)&&Input.mousePosition.x>=Screen.width/2) {
+		
+		
+		if (Input.GetKey (KeyCode.Mouse0)&&Input.mousePosition.x<=Screen.width/2) {
 			mouseForce.y =  Input.mousePosition.y - (Screen.height/2);
-			mouseForce.x=-0.2f;
+			mouseForce.x=0.2f;
 			mouseForce.z=0;
 			mouseForce.y/=Screen.height;
 			currentPosition = transform.position - player.transform.position;
 			tempOffset=offset+(mouseForce*3f);
 			difference=tempOffset-currentPosition ;
-
+			
 			myRigidBody.AddForce(difference*1110);
 			//myRigidBody.AddForce(mouseForce*1000);
 			debugText.text="Pressed" + mouseForce.ToString();
-
+			
 		} else {
 			currentPosition = transform.position - player.transform.position;
 			difference=offset-currentPosition ;
 			myRigidBody.AddForce(difference*1110);
 			debugText.text="Not pressed" + difference.ToString();
-
+			
 		}
-
-
-
+		
+		
+		
 	}
-
+	
 }

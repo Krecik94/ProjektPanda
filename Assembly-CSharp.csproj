@@ -46,7 +46,9 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\LArmMovement1.cs" />
      <Compile Include="Assets\Test_folder\LArmMove.cs" />
+     <Compile Include="Assets\Test_folder\LArmMovement1.cs" />
      <Compile Include="Assets\Test_folder\PlayerCamera.cs" />
      <Compile Include="Assets\Test_folder\PlayerController.cs" />
      <Compile Include="Assets\Test_folder\RArmMove.cs" />
