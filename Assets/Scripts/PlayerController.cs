@@ -1,34 +1,45 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
 	private Rigidbody rb;
 	private float moveVertical;
-	private float strafe;
-	private float turn;
+	private float mouseSpeedX;
+	private float mouseSpeedY;
+	private Event mouseEvent;
 
 	public float speed;
-	public float torque;
+	public Text mouseDelta;
+	public Text pandaYSpeed;
 
 	// Use this for initialization
 	void Start () {
-		//rb = GetComponent<Rigidbody>();
+		rb = GetComponent<Rigidbody>();
+		mouseSpeedY = 0f;
+		pandaYSpeed.text = "Panda's Y velocity: " + rb.velocity.y.ToString();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+	}
+
+	void OnGUI () {
+		mouseEvent = Event.current;
+		if(mouseEvent.isMouse)
+			SetMouseDelta();
 	}
 
 	void FixedUpdate () {
+		moveVertical = mouseSpeedY * speed;
+		rb.AddForce(new Vector3(0, moveVertical, 0), ForceMode.VelocityChange);
+		pandaYSpeed.text = "Panda's Y velocity: " + rb.velocity.y.ToString();
+	}
 
-		/*moveVertical = Input.GetAxis("Jump");
-		strafe = Input.GetAxis("Horizontal");
-		turn = Input.GetAxis("Vertical");
-		Vector3 movement = new Vector3 (strafe, moveVertical, 0);
-		rb.AddForce(movement * speed);
-		rb.AddTorque(transform.up * torque * turn);*/
-		
+	void SetMouseDelta () {
+		mouseSpeedX = mouseEvent.delta.x;
+		mouseSpeedY = mouseEvent.delta.y;
+		mouseDelta.text = mouseSpeedX.ToString() + " , " + mouseSpeedY.ToString();
 	}
 }
