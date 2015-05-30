@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Vines
+  - Bamboo
   layers:
   - Default
   - TransparentFX
