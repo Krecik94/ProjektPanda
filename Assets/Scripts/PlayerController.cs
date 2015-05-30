@@ -42,10 +42,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-			if (transform.position.y > nextTreeSpawn) { //spawnowanie tekstury drzewa (warto by bylo jeszcze usuwac tekstury, ktore juz dawno przestal widziec)
-			nextTreeSpawn += 10;
-			Instantiate (Background, new Vector3(0.0f, nextTreeSpawn, -4.7f), Background.transform.rotation);
-		}
+		
 	}
 
 	void SetMouseDelta () {
@@ -55,7 +52,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if (other.gameObject.CompareTag ("Vines")) {
+		if (other.gameObject.CompareTag ("Bamboo")) {
 			rb.velocity = new Vector3(0, rb.velocity.y, 0);
 			transform.position = Vector3.Lerp(transform.position, new Vector3(other.transform.position.x, transform.position.y, transform.position.z) , interpolation);
 			mousePosition = Input.mousePosition;
@@ -80,7 +77,7 @@ public class PlayerController : MonoBehaviour {
 
 	void OnTriggerStay(Collider other) 
     {
-        if (other.gameObject.CompareTag ("Vines")) {	
+        if (other.gameObject.CompareTag ("Bamboo")) {	
         	mousePosition = Input.mousePosition;
 			rb.useGravity = true;
 			if(Input.GetKey(KeyCode.Mouse0)){
