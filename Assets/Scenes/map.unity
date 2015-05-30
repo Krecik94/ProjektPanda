@@ -130,6 +130,14 @@ Prefab:
       propertyPath: m_Name
       value: Vine 11
       objectReference: {fileID: 0}
+    - target: {fileID: 13682492, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 174558, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
+      propertyPath: m_TagString
+      value: Vines
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
   m_IsPrefabParent: 0
@@ -180,6 +188,10 @@ Prefab:
       propertyPath: m_Name
       value: Vine 2
       objectReference: {fileID: 0}
+    - target: {fileID: 174558, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
+      propertyPath: m_TagString
+      value: Vines
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
   m_IsPrefabParent: 0
@@ -225,6 +237,14 @@ Prefab:
     - target: {fileID: 174558, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
       propertyPath: m_Name
       value: Vine 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 13682492, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 174558, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
+      propertyPath: m_TagString
+      value: Vines
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
@@ -367,6 +387,14 @@ Prefab:
       propertyPath: m_Name
       value: Vine 3
       objectReference: {fileID: 0}
+    - target: {fileID: 13682492, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 174558, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
+      propertyPath: m_TagString
+      value: Vines
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
   m_IsPrefabParent: 0
@@ -458,7 +486,7 @@ GameObject:
   - 54: {fileID: 514957129}
   m_Layer: 0
   m_Name: Panda
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -531,9 +559,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74fc67864aa409c42996b2becefc0003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: .0500000007
+  speedY: .0500000007
+  speedX: .0199999996
+  speedXThreshold: .5
   mouseDelta: {fileID: 1063298773}
   pandaYSpeed: {fileID: 1550575862}
+  interpolation: .5
+  Background: {fileID: 781646964}
 --- !u!54 &514957129
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -592,6 +624,14 @@ Prefab:
       propertyPath: m_Name
       value: Vine 10
       objectReference: {fileID: 0}
+    - target: {fileID: 13682492, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 174558, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
+      propertyPath: m_TagString
+      value: Vines
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
   m_IsPrefabParent: 0
@@ -638,6 +678,14 @@ Prefab:
       propertyPath: m_Name
       value: Vine 4
       objectReference: {fileID: 0}
+    - target: {fileID: 13682492, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 174558, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
+      propertyPath: m_TagString
+      value: Vines
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
   m_IsPrefabParent: 0
@@ -654,7 +702,7 @@ GameObject:
   - 23: {fileID: 641266882}
   m_Layer: 0
   m_Name: Left Cyl
-  m_TagString: Untagged
+  m_TagString: Vines
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -702,7 +750,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 641266880}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: .5
   m_Height: 2
@@ -758,6 +806,14 @@ Prefab:
       propertyPath: m_Name
       value: Vine 13
       objectReference: {fileID: 0}
+    - target: {fileID: 13682492, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 174558, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
+      propertyPath: m_TagString
+      value: Vines
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
   m_IsPrefabParent: 0
@@ -765,6 +821,10 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 475770, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
   m_PrefabInternal: {fileID: 681881748}
+--- !u!1 &781646964 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 136634, guid: 7b502d22ffb38524f928149b0a26400a, type: 2}
+  m_PrefabInternal: {fileID: 1670493928}
 --- !u!1001 &1004158303
 Prefab:
   m_ObjectHideFlags: 0
@@ -807,6 +867,14 @@ Prefab:
     - target: {fileID: 174558, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
       propertyPath: m_Name
       value: Vine 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 13682492, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 174558, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
+      propertyPath: m_TagString
+      value: Vines
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
@@ -1065,6 +1133,14 @@ Prefab:
       propertyPath: m_Name
       value: Vine 9
       objectReference: {fileID: 0}
+    - target: {fileID: 13682492, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 174558, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
+      propertyPath: m_TagString
+      value: Vines
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
   m_IsPrefabParent: 0
@@ -1081,7 +1157,7 @@ GameObject:
   - 23: {fileID: 1372797948}
   m_Layer: 0
   m_Name: Middle Cyl
-  m_TagString: Untagged
+  m_TagString: Vines
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1117,7 +1193,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1372797947}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: .5
   m_Height: 2
@@ -1359,6 +1435,14 @@ Prefab:
       propertyPath: m_Name
       value: Vine 12
       objectReference: {fileID: 0}
+    - target: {fileID: 13682492, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 174558, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
+      propertyPath: m_TagString
+      value: Vines
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
   m_IsPrefabParent: 0
@@ -1401,6 +1485,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 13682492, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 174558, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
+      propertyPath: m_TagString
+      value: Vines
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
   m_IsPrefabParent: 0
@@ -1414,11 +1506,11 @@ GameObject:
   - 4: {fileID: 1600688994}
   m_Layer: 0
   m_Name: Vines
-  m_TagString: Untagged
+  m_TagString: Vines
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1600688994
 Transform:
   m_ObjectHideFlags: 0
@@ -1529,8 +1621,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1669970201}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -.214285851, z: -4.08999968}
+  m_LocalRotation: {x: .00610861462, y: 0, z: 0, w: .999981344}
+  m_LocalPosition: {x: 0, y: .569999993, z: -6.67999983}
   m_LocalScale: {x: 1, y: 1.42857146, z: 1}
   m_Children: []
   m_Father: {fileID: 514957127}
@@ -1576,7 +1668,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 136634, guid: 7b502d22ffb38524f928149b0a26400a, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b502d22ffb38524f928149b0a26400a, type: 2}
@@ -1627,6 +1719,14 @@ Prefab:
     - target: {fileID: 174558, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
       propertyPath: m_Name
       value: Vine 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 13682492, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 174558, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
+      propertyPath: m_TagString
+      value: Vines
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
@@ -1686,6 +1786,14 @@ Prefab:
       propertyPath: m_Name
       value: Vine 6
       objectReference: {fileID: 0}
+    - target: {fileID: 13682492, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 174558, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
+      propertyPath: m_TagString
+      value: Vines
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
   m_IsPrefabParent: 0
@@ -1731,6 +1839,14 @@ Prefab:
     - target: {fileID: 174558, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
       propertyPath: m_Name
       value: Vine 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 13682492, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 174558, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}
+      propertyPath: m_TagString
+      value: Vines
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bddde34a9085bdb4687fb5a2b4079d80, type: 2}

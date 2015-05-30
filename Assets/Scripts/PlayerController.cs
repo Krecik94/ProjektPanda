@@ -6,16 +6,22 @@ public class PlayerController : MonoBehaviour {
 
 	private Rigidbody rb;
 	private float moveVertical;
+	private float moveHorizontal;
 	private float mouseSpeedX;
 	private float mouseSpeedY;
 	private Event mouseEvent;
 	private Vector3 mousePosition;
 	private Vector3 oldMousePosition;
 	private Vector3 lockPosition;
+	private float nextTreeSpawn = 5.0f;
 
-	public float speed;
+	public float speedY;
+	public float speedX;
+	public float speedXThreshold;
 	public Text mouseDelta;
 	public Text pandaYSpeed;
+	public float interpolation;
+	public GameObject Background;
 
 	// Use this for initialization
 	void Start () {
@@ -36,20 +42,10 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-		mousePosition = Input.mousePosition;
-		rb.useGravity = true;
-		if(Input.GetKey(KeyCode.Mouse0)){
-			moveVertical = (oldMousePosition.y - mousePosition.y) * speed;
-			if(moveVertical == 0) {
-				rb.useGravity = false;
-				rb.velocity = Vector3.zero;
-			}
-			else {
-				rb.velocity = new Vector3(0, moveVertical, 0);
-			}
+			if (transform.position.y > nextTreeSpawn) { //spawnowanie tekstury drzewa (warto by bylo jeszcze usuwac tekstury, ktore juz dawno przestal widziec)
+			nextTreeSpawn += 10;
+			Instantiate (Background, new Vector3(0.0f, nextTreeSpawn, -4.7f), Background.transform.rotation);
 		}
-		pandaYSpeed.text = "Panda's Y velocity: " + rb.velocity.y.ToString();
-		oldMousePosition = mousePosition;
 	}
 
 	void SetMouseDelta () {
@@ -57,4 +53,51 @@ public class PlayerController : MonoBehaviour {
 		mouseSpeedY = mouseEvent.delta.y;
 		mouseDelta.text = mouseSpeedX.ToString() + " , " + mouseSpeedY.ToString();
 	}
+
+	void OnTriggerEnter(Collider other) {
+		if (other.gameObject.CompareTag ("Vines")) {
+			rb.velocity = new Vector3(0, rb.velocity.y, 0);
+			transform.position = Vector3.Lerp(transform.position, new Vector3(other.transform.position.x, transform.position.y, transform.position.z) , interpolation);
+			mousePosition = Input.mousePosition;
+			rb.useGravity = true;
+			if(Input.GetKey(KeyCode.Mouse0)){
+				moveVertical = (oldMousePosition.y - mousePosition.y) * speedY;
+				moveHorizontal = (oldMousePosition.x - mousePosition.x) * speedX;
+				if(moveVertical == 0 && moveHorizontal == 0) {
+					rb.useGravity = false;
+					rb.velocity = Vector3.zero;
+				}
+				else
+					rb.velocity = new Vector3(moveHorizontal, moveVertical, 0);
+				
+			}
+			pandaYSpeed.text = "Panda's Y velocity: " + rb.velocity.y.ToString();
+			oldMousePosition = mousePosition;
+			
+		}
+	}
+
+
+	void OnTriggerStay(Collider other) 
+    {
+        if (other.gameObject.CompareTag ("Vines")) {	
+        	mousePosition = Input.mousePosition;
+			rb.useGravity = true;
+			if(Input.GetKey(KeyCode.Mouse0)){
+				moveVertical = (oldMousePosition.y - mousePosition.y) * speedY;
+				moveHorizontal = (oldMousePosition.x - mousePosition.x) * speedX;
+				if(moveVertical == 0 && moveHorizontal == 0) {
+					rb.useGravity = false;
+					rb.velocity = Vector3.zero;
+				}
+				else
+					rb.velocity = new Vector3(moveHorizontal, moveVertical, 0);
+				
+			}
+			pandaYSpeed.text = "Panda's Y velocity: " + rb.velocity.y.ToString();
+			oldMousePosition = mousePosition;
+			if(moveHorizontal < speedXThreshold)
+				transform.position = Vector3.Lerp(transform.position, new Vector3(other.transform.position.x, transform.position.y, transform.position.z) , interpolation);
+        }
+    }
 }
