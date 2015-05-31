@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour {
 	private Event mouseEvent;
 	private Vector3 mousePosition;
 	private Vector3 oldMousePosition;
+	private Vector3 mouseDrag;
 	private Vector3 lockPosition;
 	private float LPMDownTime;
 	private float LMPDownWait;
@@ -19,9 +20,11 @@ public class PlayerController : MonoBehaviour {
 	public float speedY;
 	public float speedYMax;
 	public float speedX;
+	public float speedXMax;
 	public float speedXThreshold;
 	public Text mouseDelta;
 	public Text pandaYSpeed;
+	public Text pandaXSpeed;
 	public float interpolation;
 	public GameObject Background;
 
@@ -35,6 +38,7 @@ public class PlayerController : MonoBehaviour {
 		moveVertical = new float[5];
 		LMPDownWait = 0.2f;
 		pandaYSpeed.text = "Panda's Y velocity: " + rb.velocity.y.ToString();
+		pandaXSpeed.text = "Panda's X velocity: " + rb.velocity.x.ToString();
 	}
 	
 	// Update is called once per frame
@@ -42,8 +46,15 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
+		if(rb.velocity.y > speedYMax)
+			rb.velocity = new Vector3(rb.velocity.x, speedYMax, 0);
+		if(rb.velocity.x > speedXMax)
+			rb.velocity = new Vector3(speedXMax, rb.velocity.y, 0);
+		if(rb.velocity.x < -speedXMax)
+			rb.velocity = new Vector3(-speedXMax, rb.velocity.y, 0);
 		SetMouseDelta();
 		pandaYSpeed.text = "Panda's Y velocity: " + rb.velocity.y.ToString();
+		pandaXSpeed.text = "Panda's X velocity: " + rb.velocity.x.ToString();
 		
 	}
 
@@ -53,10 +64,10 @@ public class PlayerController : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.CompareTag ("Bamboo")) {
-			rb.velocity = new Vector3(0, rb.velocity.y, 0);
-			transform.position = Vector3.Lerp(transform.position, new Vector3(other.transform.position.x, transform.position.y, transform.position.z) , interpolation);
+			//rb.velocity = new Vector3(0, rb.velocity.y, 0);
+			//transform.position = Vector3.Lerp(transform.position, new Vector3(other.transform.position.x, transform.position.y, transform.position.z) , interpolation);
 			lockPosition = transform.position;
-			PandaMove();
+			PandaMove(other);
 		}
 		else if (other.gameObject.CompareTag ("Vines")) {
 
@@ -66,14 +77,11 @@ public class PlayerController : MonoBehaviour {
 
 	void OnTriggerStay(Collider other) {
         if (other.gameObject.CompareTag ("Bamboo")) {	
-        	PandaMove();
-			if(moveHorizontal[0] < speedXThreshold)
-				
-				transform.position = Vector3.Lerp(transform.position, new Vector3(other.transform.position.x, transform.position.y, transform.position.z) , interpolation);
+        	PandaMove(other);
         }
     }
 
-    void PandaMove() {
+    void PandaMove(Collider other) {
     	if(Input.GetMouseButtonDown(0)) {
    			LPMDownTime = Time.time + LMPDownWait;
 			lockPosition = transform.position;
@@ -95,13 +103,17 @@ public class PlayerController : MonoBehaviour {
 				else
 					transform.position = lockPosition;
 			}
-
-			moveVertical[0] = ((oldMousePosition.y - mousePosition.y)/Screen.height) * speedY;
-			moveHorizontal[0] = ((oldMousePosition.x - mousePosition.x)/Screen.height) * speedX;
+			mouseDrag = oldMousePosition - mousePosition;
+			moveVertical[0] = (mouseDrag.y/Screen.height);
+			moveHorizontal[0] = (mouseDrag.x/Screen.height);
 			for(int i = 0; i<4; ++i) {
 				moveVertical[i+1] = moveVertical[i];
 				moveHorizontal[i+1] = moveHorizontal[i];
 			}	
+
+			if(moveHorizontal[0] < speedXThreshold)
+				
+				transform.position = Vector3.Lerp(transform.position, new Vector3(other.transform.position.x, transform.position.y, transform.position.z) , interpolation);
 		}
 
 		if(Input.GetMouseButtonUp(0)){
@@ -114,13 +126,24 @@ public class PlayerController : MonoBehaviour {
 				if(Mathf.Abs(moveHorizontal[0]) < Mathf.Abs(moveHorizontal[i]))
 					moveHorizontal[0] = moveHorizontal[i];
 			}
+
+			float angle = Mathf.Atan2 (moveVertical[0], moveHorizontal[0]) * Mathf.Rad2Deg;
+			if((angle < -70 && angle >-110) || (angle < 110 && angle >70))
+				moveHorizontal[0] = 0;
+			if(angle < -160 || angle >160 || (angle < 20 && angle >-20))
+				moveVertical[0] = 0;
+
+			moveVertical[0] *= speedY;
+			moveHorizontal[0] *= speedX;
+
 			if(moveVertical[0] > speedYMax)
 				moveVertical[0] = speedYMax;
-			if(moveHorizontal[0] > 5)
-				moveHorizontal[0] = 5;
+			if(moveHorizontal[0] > speedXMax)
+				moveHorizontal[0] = speedXMax;
+			if(moveHorizontal[0] < -speedXMax)
+				moveHorizontal[0] = -speedXMax;
 			rb.velocity = new Vector3(moveHorizontal[0], moveVertical[0], 0);	
 		}
 		oldMousePosition = mousePosition;
-
     }
 }
