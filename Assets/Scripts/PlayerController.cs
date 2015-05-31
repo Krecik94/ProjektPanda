@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour {
 		if (other.gameObject.CompareTag ("Bamboo")) {
 			rb.velocity = new Vector3(0, rb.velocity.y, 0);
 			transform.position = Vector3.Lerp(transform.position, new Vector3(other.transform.position.x, transform.position.y, transform.position.z) , interpolation);
+			lockPosition = transform.position;
 			PandaMove();
 		}
 		else if (other.gameObject.CompareTag ("Vines")) {
@@ -85,7 +86,7 @@ public class PlayerController : MonoBehaviour {
 			rb.useGravity = false;
 			rb.velocity = Vector3.zero;
 			if(LPMDownTime < Time.time) {
-				tempPandaYPosition = mousePosition.y - Screen.height/2;
+				tempPandaYPosition = - mousePosition.y + Screen.height/2;
 				tempPandaYPosition /= Screen.height;
 				tempPandaYPosition += lockPosition.y;
 
@@ -115,8 +116,8 @@ public class PlayerController : MonoBehaviour {
 			}
 			if(moveVertical[0] > 20)
 				moveVertical[0] = 20;
-			if(moveHorizontal[0] > 20)
-				moveHorizontal[0] = 20;
+			if(moveHorizontal[0] > 10)
+				moveHorizontal[0] = 10;
 			rb.velocity = new Vector3(moveHorizontal[0], moveVertical[0], 0);	
 		}
 		oldMousePosition = mousePosition;
