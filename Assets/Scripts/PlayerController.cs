@@ -96,8 +96,8 @@ public class PlayerController : MonoBehaviour {
 					transform.position = lockPosition;
 			}
 
-			moveVertical[0] = (oldMousePosition.y/Screen.height - mousePosition.y/Screen.height) * speedY;
-			moveHorizontal[0] = (oldMousePosition.x/Screen.width - mousePosition.x/Screen.width) * speedX;
+			moveVertical[0] = ((oldMousePosition.y - mousePosition.y)/Screen.height) * speedY;
+			moveHorizontal[0] = ((oldMousePosition.x - mousePosition.x)/Screen.height) * speedX;
 			for(int i = 0; i<4; ++i) {
 				moveVertical[i+1] = moveVertical[i];
 				moveHorizontal[i+1] = moveHorizontal[i];
@@ -114,10 +114,10 @@ public class PlayerController : MonoBehaviour {
 				if(Mathf.Abs(moveHorizontal[0]) < Mathf.Abs(moveHorizontal[i]))
 					moveHorizontal[0] = moveHorizontal[i];
 			}
-			if(moveVertical[0] > 20)
-				moveVertical[0] = 20;
-			if(moveHorizontal[0] > 10)
-				moveHorizontal[0] = 10;
+			if(moveVertical[0] > speedYMax)
+				moveVertical[0] = speedYMax;
+			if(moveHorizontal[0] > 5)
+				moveHorizontal[0] = 5;
 			rb.velocity = new Vector3(moveHorizontal[0], moveVertical[0], 0);	
 		}
 		oldMousePosition = mousePosition;

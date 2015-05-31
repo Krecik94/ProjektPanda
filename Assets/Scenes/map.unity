@@ -742,7 +742,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedY: 100
-  speedYMax: 20
+  speedYMax: 15
   speedX: 100
   speedXThreshold: .100000001
   mouseDelta: {fileID: 1063298773}
