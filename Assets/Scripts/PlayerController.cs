@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if (other.gameObject.CompareTag ("Bamboo")) {
+		if (other.gameObject.CompareTag ("Bamboo") || other.gameObject.CompareTag ("Vines")) {
 			rb.velocity = new Vector3(0, rb.velocity.y, 0);
 			transform.position = Vector3.Lerp(transform.position, new Vector3(other.transform.position.x, transform.position.y, transform.position.z) , interpolation);
 			mousePosition = Input.mousePosition;
@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour {
 
 	void OnTriggerStay(Collider other) 
     {
-        if (other.gameObject.CompareTag ("Bamboo")) {	
+        if (other.gameObject.CompareTag ("Bamboo") || other.gameObject.CompareTag ("Vines")) {	
         	mousePosition = Input.mousePosition;
 			rb.useGravity = true;
 			if(Input.GetKey(KeyCode.Mouse0)){
