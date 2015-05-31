@@ -96,8 +96,8 @@ public class PlayerController : MonoBehaviour {
 					transform.position = lockPosition;
 			}
 
-			moveVertical[0] = (oldMousePosition.y - mousePosition.y) * speedY;
-			moveHorizontal[0] = (oldMousePosition.x - mousePosition.x) * speedX;
+			moveVertical[0] = (oldMousePosition.y/Screen.height - mousePosition.y/Screen.height) * speedY;
+			moveHorizontal[0] = (oldMousePosition.x/Screen.width - mousePosition.x/Screen.width) * speedX;
 			for(int i = 0; i<4; ++i) {
 				moveVertical[i+1] = moveVertical[i];
 				moveHorizontal[i+1] = moveHorizontal[i];

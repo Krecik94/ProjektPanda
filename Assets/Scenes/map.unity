@@ -741,9 +741,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74fc67864aa409c42996b2becefc0003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedY: .0500000007
-  speedYMax: 0
-  speedX: .0199999996
+  speedY: 100
+  speedYMax: 20
+  speedX: 100
   speedXThreshold: .100000001
   mouseDelta: {fileID: 1063298773}
   pandaYSpeed: {fileID: 1550575862}
