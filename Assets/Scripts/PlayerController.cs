@@ -5,6 +5,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
 	private Rigidbody rb;
+	private Animator anim;
 	private float[] moveVertical;
 	private float[] moveHorizontal;
 	//private float mouseSpeedX;
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody>();
+		anim = GetComponent<Animator> ();
 		oldMousePosition = mousePosition = Vector3.zero;
 		lockPosition = transform.position;
 		tempPandaYPosition = 0f;
@@ -55,6 +57,8 @@ public class PlayerController : MonoBehaviour {
 		SetMouseDelta();
 		pandaYSpeed.text = "Panda's Y velocity: " + rb.velocity.y.ToString();
 		pandaXSpeed.text = "Panda's X velocity: " + rb.velocity.x.ToString();
+		anim.speed = Mathf.Abs (rb.velocity.y)/5;
+
 		
 	}
 
@@ -98,12 +102,15 @@ public class PlayerController : MonoBehaviour {
 				tempPandaYPosition /= Screen.height;
 				tempPandaYPosition += lockPosition.y;
 
+
+
 				if(tempPandaYPosition  - 0.7 >= 0)
 					transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, tempPandaYPosition, transform.position.z) , interpolation);
 				else
 					transform.position = lockPosition;
 			}
 			mouseDrag = oldMousePosition - mousePosition;
+			anim.Play("Idle_tmp",-1,Mathf.Clamp((mousePosition.y/Screen.height)/2,0,1));
 			moveVertical[0] = (mouseDrag.y/Screen.height);
 			moveHorizontal[0] = (mouseDrag.x/Screen.height);
 			for(int i = 0; i<4; ++i) {
