@@ -132,6 +132,9 @@ public class PlayerController : MonoBehaviour {
 
 				if(Mathf.Abs(moveHorizontal[0]) < Mathf.Abs(moveHorizontal[i]))
 					moveHorizontal[0] = moveHorizontal[i];
+
+				moveVertical[i] = 0;
+				moveHorizontal[i] = 0;
 			}
 
 			float angle = Mathf.Atan2 (moveVertical[0], moveHorizontal[0]) * Mathf.Rad2Deg;
