@@ -54,6 +54,8 @@ public class PlayerController : MonoBehaviour {
 		rb.useGravity = true;
 		if(rb.velocity.y > speedYMax)
 			rb.velocity = new Vector3(rb.velocity.x, speedYMax, 0);
+		if(rb.velocity.y < -speedYMax)
+			rb.velocity = new Vector3(rb.velocity.x, -speedYMax, 0);
 		if(rb.velocity.x > speedXMax)
 			rb.velocity = new Vector3(speedXMax, rb.velocity.y, 0);
 		if(rb.velocity.x < -speedXMax)
@@ -110,8 +112,8 @@ public class PlayerController : MonoBehaviour {
 		
 		if(Input.GetKey(KeyCode.Mouse0)){
 			anim.SetBool("ClimbingRight",true);
-			anim.Play("ClimbingRight",-1,-((Camera.main.ScreenToWorldPoint(mouseLockPosition).y - transform.position.y)/Screen.height) + 0.5f);
-			Debug.Log(-((Camera.main.ScreenToWorldPoint(mouseLockPosition).y - transform.position.y)/Screen.height) + 0.5f);
+			anim.Play("ClimbingRight",-1,-((mouseLockPosition.y - Camera.main.WorldToScreenPoint(transform.position).y)/Screen.height) + 0.5f);
+			Debug.Log(-((mouseLockPosition.y - Camera.main.WorldToScreenPoint(transform.position).y)/Screen.height) + 0.5f);
 			rb.useGravity = false;
 			rb.velocity = Vector3.zero;
 			if(LPMDownTime < Time.time) {
