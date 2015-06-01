@@ -1,0 +1,125 @@
+fileFormatVersion: 2
+guid: d15abf5ac8a68354d8b5b0f47dc02477
+timeCreated: 1433184524
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Chest
+    100004: Cube
+    100006: Cube_MeshPart0
+    100008: Cube_MeshPart1
+    100010: Cube_MeshPart2
+    100012: Head
+    100014: Head_end
+    100016: LLeg
+    100018: LLeg_end
+    100020: LowerLArm
+    100022: LowerLArm.001
+    100024: LowerLArm.001_end
+    100026: LowerRArm
+    100028: LowerRArm.001
+    100030: LowerRArm.001_end
+    100032: //RootNode
+    100034: RLeg
+    100036: RLeg_end
+    100038: Stomach
+    100040: UpperLArm
+    100042: UpperRArm
+    400000: Armature
+    400002: Chest
+    400004: Cube
+    400006: Cube_MeshPart0
+    400008: Cube_MeshPart1
+    400010: Cube_MeshPart2
+    400012: Head
+    400014: Head_end
+    400016: LLeg
+    400018: LLeg_end
+    400020: LowerLArm
+    400022: LowerLArm.001
+    400024: LowerLArm.001_end
+    400026: LowerRArm
+    400028: LowerRArm.001
+    400030: LowerRArm.001_end
+    400032: //RootNode
+    400034: RLeg
+    400036: RLeg_end
+    400038: Stomach
+    400040: UpperLArm
+    400042: UpperRArm
+    4300000: Cube_MeshPart0
+    4300002: Cube_MeshPart1
+    4300004: Cube_MeshPart2
+    7400000: Armature|ArmatureAction
+    7400002: Armature|ArmatureAction.001
+    7400004: Armature|ArmatureAction.002
+    7400006: Armature|ArmatureAction.003
+    7400008: Armature|ArmatureAction.004
+    7400010: Cube|ArmatureAction
+    7400012: Cube|ArmatureAction.001
+    7400014: Cube|ArmatureAction.002
+    7400016: Cube|ArmatureAction.003
+    9500000: //RootNode
+    13700000: Cube_MeshPart0
+    13700002: Cube_MeshPart1
+    13700004: Cube_MeshPart2
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
