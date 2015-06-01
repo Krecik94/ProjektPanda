@@ -36,8 +36,8 @@ public class PlayerController : MonoBehaviour {
 		oldMousePosition = mousePosition = Vector3.zero;
 		lockPosition = transform.position;
 		tempPandaYPosition = 0f;
-		moveHorizontal = new float[5];
-		moveVertical = new float[5];
+		moveHorizontal = new float[30];
+		moveVertical = new float[30];
 		LMPDownWait = 0.2f;
 		pandaYSpeed.text = "Panda's Y velocity: " + rb.velocity.y.ToString();
 		pandaXSpeed.text = "Panda's X velocity: " + rb.velocity.x.ToString();
@@ -113,9 +113,9 @@ public class PlayerController : MonoBehaviour {
 			anim.Play("Idle_tmp",-1,Mathf.Abs((1-Mathf.Clamp((mousePosition.y/Screen.height),0,1))));
 			moveVertical[0] = (mouseDrag.y/Screen.height);
 			moveHorizontal[0] = (mouseDrag.x/Screen.height);
-			for(int i = 0; i<4; ++i) {
-				moveVertical[i+1] = moveVertical[i];
-				moveHorizontal[i+1] = moveHorizontal[i];
+			for(int i = 29; i>0; --i) {
+				moveVertical[i] = moveVertical[i-1];
+				moveHorizontal[i] = moveHorizontal[i-1];
 			}	
 
 			if(moveHorizontal[0] < speedXThreshold)
@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour {
 
 		if(Input.GetMouseButtonUp(0)){
 
-			for(int i = 1; i<5; ++i){
+			for(int i = 1; i<30; ++i){
 
 				if(Mathf.Abs(moveVertical[0]) < Mathf.Abs(moveVertical[i]))
 					moveVertical[0] = moveVertical[i];
