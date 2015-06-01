@@ -49,6 +49,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
+		anim.speed = Mathf.Abs((rb.velocity.y / 1.0f) );
+		anim.SetFloat ("Speed", rb.velocity.y);
 		rb.useGravity = true;
 		if(rb.velocity.y > speedYMax)
 			rb.velocity = new Vector3(rb.velocity.x, speedYMax, 0);
@@ -59,7 +61,7 @@ public class PlayerController : MonoBehaviour {
 		SetMouseDelta();
 		pandaYSpeed.text = "Panda's Y velocity: " + rb.velocity.y.ToString();
 		pandaXSpeed.text = "Panda's X velocity: " + rb.velocity.x.ToString();
-		anim.speed = Mathf.Abs (rb.velocity.y)/2;
+	
 
 		
 	}
@@ -107,6 +109,9 @@ public class PlayerController : MonoBehaviour {
     	
 		
 		if(Input.GetKey(KeyCode.Mouse0)){
+			anim.SetBool("ClimbingRight",true);
+			anim.Play("ClimbingRight",-1,-((Camera.main.ScreenToWorldPoint(mouseLockPosition).y - transform.position.y)/Screen.height) + 0.5f);
+			Debug.Log(-((Camera.main.ScreenToWorldPoint(mouseLockPosition).y - transform.position.y)/Screen.height) + 0.5f);
 			rb.useGravity = false;
 			rb.velocity = Vector3.zero;
 			if(LPMDownTime < Time.time) {
@@ -122,7 +127,7 @@ public class PlayerController : MonoBehaviour {
 					transform.position = lockPosition;
 			}
 			mouseDrag = oldMousePosition - mousePosition;
-			anim.Play("Idle_tmp",-1,Mathf.Abs((1-Mathf.Clamp((mousePosition.y/Screen.height),0,1))));
+		
 			moveVertical[0] = (mouseDrag.y/Screen.height);
 			moveHorizontal[0] = (mouseDrag.x/Screen.height);
 			for(int i = 29; i>0; --i) {
@@ -136,7 +141,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		if(Input.GetMouseButtonUp(0)){
-
+			anim.SetBool("ClimbingRight",false);
 			for(int i = 1; i<30; ++i){
 
 				if(Mathf.Abs(moveVertical[0]) < Mathf.Abs(moveVertical[i]))
