@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour {
 		
 		if(Input.GetKey(KeyCode.Mouse0)){
 			anim.SetBool("ClimbingRight",true);
-			anim.Play("ClimbingRight",-1,-((mouseLockPosition.y - Camera.main.WorldToScreenPoint(transform.position).y)/Screen.height) + 0.5f);
+			anim.Play("ClimbingRight",-1,-((mousePosition.y - Camera.main.WorldToScreenPoint(transform.position).y)/Screen.height) + 0.5f);
 			Debug.Log(-((mouseLockPosition.y - Camera.main.WorldToScreenPoint(transform.position).y)/Screen.height) + 0.5f);
 			rb.useGravity = false;
 			rb.velocity = Vector3.zero;
