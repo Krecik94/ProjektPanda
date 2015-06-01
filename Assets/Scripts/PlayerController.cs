@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour {
 	private Vector3 oldMousePosition;
 	private Vector3 mouseDrag;
 	private Vector3 lockPosition;
+	private Vector3 mouseLockPosition;
 	private float LPMDownTime;
 	private float LMPDownWait;
 
@@ -48,6 +49,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
+		rb.useGravity = true;
 		if(rb.velocity.y > speedYMax)
 			rb.velocity = new Vector3(rb.velocity.x, speedYMax, 0);
 		if(rb.velocity.x > speedXMax)
@@ -85,20 +87,30 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    void OnTriggerExit(Collider other) {
+    	if (other.gameObject.CompareTag ("Bamboo")) {	
+        	rb.useGravity = true;
+        	mouseLockPosition = mousePosition;
+        }
+    }
+
     void PandaMove(Collider other) {
-    	if(Input.GetMouseButtonDown(0)) {
-   			LPMDownTime = Time.time + LMPDownWait;
-			lockPosition = transform.position;
-    	}
 
     	mousePosition = Input.mousePosition;
 		rb.useGravity = true;
+    	if(Input.GetMouseButtonDown(0)) {
+   			LPMDownTime = Time.time + LMPDownWait;
+			lockPosition = transform.position;
+			mouseLockPosition = mousePosition;
+    	}
+
+    	
 		
 		if(Input.GetKey(KeyCode.Mouse0)){
 			rb.useGravity = false;
 			rb.velocity = Vector3.zero;
 			if(LPMDownTime < Time.time) {
-				tempPandaYPosition = - mousePosition.y + Screen.height/2;
+				tempPandaYPosition = - mousePosition.y + mouseLockPosition.y;
 				tempPandaYPosition /= Screen.height;
 				tempPandaYPosition += lockPosition.y;
 
@@ -148,6 +160,8 @@ public class PlayerController : MonoBehaviour {
 
 			if(moveVertical[0] > speedYMax)
 				moveVertical[0] = speedYMax;
+			if(moveVertical[0] < -speedYMax)
+				moveVertical[0] = -speedYMax;
 			if(moveHorizontal[0] > speedXMax)
 				moveHorizontal[0] = speedXMax;
 			if(moveHorizontal[0] < -speedXMax)
