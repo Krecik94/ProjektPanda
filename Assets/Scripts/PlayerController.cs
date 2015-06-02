@@ -152,7 +152,7 @@ public class PlayerController : MonoBehaviour {
 				transform.position = Vector3.Lerp(transform.position, new Vector3(other.transform.position.x, transform.position.y, transform.position.z) , interpolation);
 		}
 
-		if((Input.GetMouseButtonUp(0) && !Input.GetMouseButtonDown(1)) || (Input.GetMouseButtonUp(1) && !Input.GetMouseButtonDown(0)) || (Input.GetMouseButtonUp(1) && Input.GetMouseButtonUp(0))){
+		if((Input.GetMouseButtonUp(0) && !Input.GetKey(KeyCode.Mouse1)) || (Input.GetMouseButtonUp(1) && !Input.GetKey(KeyCode.Mouse0)) || (Input.GetMouseButtonUp(1) && Input.GetMouseButtonUp(0))){
 			anim.SetBool("ClimbingRight",false);
 			grabbed = false;
 			for(int i = 1; i<15; ++i){
