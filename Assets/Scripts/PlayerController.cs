@@ -38,8 +38,8 @@ public class PlayerController : MonoBehaviour {
 		anim = GetComponent<Animator> ();
 		oldMousePosition = mousePosition = Vector3.zero;
 		lockPosition = transform.position;
-		moveHorizontal = new float[30];
-		moveVertical = new float[30];
+		moveHorizontal = new float[15];
+		moveVertical = new float[15];
 		LMPDownWait = 0.2f;
 		grabbed = false;
 		pandaYSpeed.text = "Panda's Y velocity: " + rb.velocity.y.ToString();
@@ -76,8 +76,6 @@ public class PlayerController : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.CompareTag ("Bamboo")) {
-			//rb.velocity = new Vector3(0, rb.velocity.y, 0);
-			//transform.position = Vector3.Lerp(transform.position, new Vector3(other.transform.position.x, transform.position.y, transform.position.z) , interpolation);
 			lockPosition = transform.position;
 			PandaMove(other);
 		}
@@ -104,7 +102,7 @@ public class PlayerController : MonoBehaviour {
 
     	mousePosition = Input.mousePosition;
 		rb.useGravity = true;
-    	if(Input.GetMouseButtonDown(0)) {
+    	if(Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)) {
    			LPMDownTime = Time.time + LMPDownWait;
 			lockPosition = transform.position;
 			mouseLockPosition = mousePosition;
@@ -114,7 +112,7 @@ public class PlayerController : MonoBehaviour {
 
     	
 		
-		if(Input.GetKey(KeyCode.Mouse0)){
+		if(Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Mouse1)){
 			anim.SetBool("ClimbingRight",true);
 			anim.Play("ClimbingRight",-1,Mathf.Clamp01(-((mousePosition.y - Camera.main.WorldToScreenPoint(transform.position).y)/Screen.height) + 0.5f));
 
@@ -143,7 +141,7 @@ public class PlayerController : MonoBehaviour {
 		
 				moveVertical[0] = (mouseDrag.y/Screen.height);
 				moveHorizontal[0] = (mouseDrag.x/Screen.height);
-				for(int i = 29; i>0; --i) {
+				for(int i = 14; i>0; --i) {
 					moveVertical[i] = moveVertical[i-1];
 					moveHorizontal[i] = moveHorizontal[i-1];
 				}
@@ -154,10 +152,10 @@ public class PlayerController : MonoBehaviour {
 				transform.position = Vector3.Lerp(transform.position, new Vector3(other.transform.position.x, transform.position.y, transform.position.z) , interpolation);
 		}
 
-		if(Input.GetMouseButtonUp(0)){
+		if((Input.GetMouseButtonUp(0) && !Input.GetMouseButtonDown(1)) || (Input.GetMouseButtonUp(1) && !Input.GetMouseButtonDown(0)) || (Input.GetMouseButtonUp(1) && Input.GetMouseButtonUp(0))){
 			anim.SetBool("ClimbingRight",false);
 			grabbed = false;
-			for(int i = 1; i<30; ++i){
+			for(int i = 1; i<15; ++i){
 
 				if(Mathf.Abs(moveVertical[0]) < Mathf.Abs(moveVertical[i]))
 					moveVertical[0] = moveVertical[i];
@@ -188,7 +186,7 @@ public class PlayerController : MonoBehaviour {
 				moveHorizontal[0] = -speedXMax;
 			rb.velocity = new Vector3(moveHorizontal[0], moveVertical[0], 0);	
 
-			for(int i = 1; i<30; ++i) {
+			for(int i = 1; i<15; ++i) {
 				moveVertical[i] = 0;
 				moveHorizontal[i] = 0;
 			}
