@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour {
 	private float[] moveVertical;
 	private float[] moveHorizontal;
 	//private float mouseSpeedX;
-	private float tempPandaYPosition;
+	private Vector3 tempPandaPosition;
 	private Event mouseEvent;
 	private Vector3 mousePosition;
 	private Vector3 oldMousePosition;
@@ -36,7 +36,6 @@ public class PlayerController : MonoBehaviour {
 		anim = GetComponent<Animator> ();
 		oldMousePosition = mousePosition = Vector3.zero;
 		lockPosition = transform.position;
-		tempPandaYPosition = 0f;
 		moveHorizontal = new float[30];
 		moveVertical = new float[30];
 		LMPDownWait = 0.2f;
@@ -112,29 +111,34 @@ public class PlayerController : MonoBehaviour {
 		
 		if(Input.GetKey(KeyCode.Mouse0)){
 			anim.SetBool("ClimbingRight",true);
-			anim.Play("ClimbingRight",-1,-((mousePosition.y - Camera.main.WorldToScreenPoint(transform.position).y)/Screen.height) + 0.5f);
-			Debug.Log(-((mouseLockPosition.y - Camera.main.WorldToScreenPoint(transform.position).y)/Screen.height) + 0.5f);
-			rb.useGravity = false;
-			rb.velocity = Vector3.zero;
-			if(LPMDownTime < Time.time) {
-				tempPandaYPosition = - mousePosition.y + mouseLockPosition.y;
-				tempPandaYPosition /= Screen.height;
-				tempPandaYPosition += lockPosition.y;
+			anim.Play("ClimbingRight",-1,Mathf.Clamp01(-((mousePosition.y - Camera.main.WorldToScreenPoint(transform.position).y)/Screen.height) + 0.5f));
+			tempPandaPosition=transform.position;
+			tempPandaPosition.y +=Input.mousePosition.y/Screen.height-0.5f;
+			if(Physics.Raycast(tempPandaPosition,new Vector3(0,0,1))) {
+				rb.useGravity = false;
+				rb.velocity = Vector3.zero;
+				transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, tempPandaPosition.y, transform.position.z) , interpolation);
+
+				if(LPMDownTime < Time.time) {
+					tempPandaPosition.y = - mousePosition.y + mouseLockPosition.y;
+					tempPandaPosition.y /= Screen.height;
+					tempPandaPosition.y += lockPosition.y;
 
 
 
-				if(tempPandaYPosition  - 0.7 >= 0)
-					transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, tempPandaYPosition, transform.position.z) , interpolation);
-				else
-					transform.position = lockPosition;
-			}
-			mouseDrag = oldMousePosition - mousePosition;
+					if(tempPandaPosition.y  - 0.7 >= 0)
+						transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, tempPandaPosition.y, transform.position.z) , interpolation);
+					else
+						transform.position = lockPosition;
+				}
+				mouseDrag = oldMousePosition - mousePosition;
 		
-			moveVertical[0] = (mouseDrag.y/Screen.height);
-			moveHorizontal[0] = (mouseDrag.x/Screen.height);
-			for(int i = 29; i>0; --i) {
-				moveVertical[i] = moveVertical[i-1];
-				moveHorizontal[i] = moveHorizontal[i-1];
+				moveVertical[0] = (mouseDrag.y/Screen.height);
+				moveHorizontal[0] = (mouseDrag.x/Screen.height);
+				for(int i = 29; i>0; --i) {
+					moveVertical[i] = moveVertical[i-1];
+					moveHorizontal[i] = moveHorizontal[i-1];
+				}
 			}	
 
 			if(moveHorizontal[0] < speedXThreshold)
