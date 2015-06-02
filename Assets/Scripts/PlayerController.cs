@@ -4,6 +4,7 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
+
 	private Rigidbody rb;
 	private Animator anim;
 	private float[] moveVertical;
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour {
 	private Vector3 mouseLockPosition;
 	private float LPMDownTime;
 	private float LMPDownWait;
+	private bool grabbed;
 
 	public float speedY;
 	public float speedYMax;
@@ -39,6 +41,7 @@ public class PlayerController : MonoBehaviour {
 		moveHorizontal = new float[30];
 		moveVertical = new float[30];
 		LMPDownWait = 0.2f;
+		grabbed = false;
 		pandaYSpeed.text = "Panda's Y velocity: " + rb.velocity.y.ToString();
 		pandaXSpeed.text = "Panda's X velocity: " + rb.velocity.x.ToString();
 	}
@@ -105,6 +108,8 @@ public class PlayerController : MonoBehaviour {
    			LPMDownTime = Time.time + LMPDownWait;
 			lockPosition = transform.position;
 			mouseLockPosition = mousePosition;
+			tempPandaPosition=transform.position;
+			tempPandaPosition.y +=Input.mousePosition.y/Screen.height - 0.5f;
     	}
 
     	
@@ -112,15 +117,18 @@ public class PlayerController : MonoBehaviour {
 		if(Input.GetKey(KeyCode.Mouse0)){
 			anim.SetBool("ClimbingRight",true);
 			anim.Play("ClimbingRight",-1,Mathf.Clamp01(-((mousePosition.y - Camera.main.WorldToScreenPoint(transform.position).y)/Screen.height) + 0.5f));
-			tempPandaPosition=transform.position;
-			tempPandaPosition.y +=Input.mousePosition.y/Screen.height-0.5f;
-			if(Physics.Raycast(tempPandaPosition,new Vector3(0,0,1))) {
+
+			if(!grabbed){
+				tempPandaPosition=transform.position;
+				tempPandaPosition.y +=Input.mousePosition.y/Screen.height - 0.5f;
+				if(Physics.Raycast(tempPandaPosition,new Vector3(0,0,1))) 
+					grabbed = true;
+			}
+			else {
 				rb.useGravity = false;
 				rb.velocity = Vector3.zero;
-				transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, tempPandaPosition.y, transform.position.z) , interpolation);
-
 				if(LPMDownTime < Time.time) {
-					tempPandaPosition.y = - mousePosition.y + mouseLockPosition.y;
+					tempPandaPosition.y = (- mousePosition.y + mouseLockPosition.y)/2;
 					tempPandaPosition.y /= Screen.height;
 					tempPandaPosition.y += lockPosition.y;
 
@@ -148,6 +156,7 @@ public class PlayerController : MonoBehaviour {
 
 		if(Input.GetMouseButtonUp(0)){
 			anim.SetBool("ClimbingRight",false);
+			grabbed = false;
 			for(int i = 1; i<30; ++i){
 
 				if(Mathf.Abs(moveVertical[0]) < Mathf.Abs(moveVertical[i]))
@@ -178,6 +187,11 @@ public class PlayerController : MonoBehaviour {
 			if(moveHorizontal[0] < -speedXMax)
 				moveHorizontal[0] = -speedXMax;
 			rb.velocity = new Vector3(moveHorizontal[0], moveVertical[0], 0);	
+
+			for(int i = 1; i<30; ++i) {
+				moveVertical[i] = 0;
+				moveHorizontal[i] = 0;
+			}
 		}
 		oldMousePosition = mousePosition;
     }
