@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Vines
   - Bamboo
+  - Apple
   layers:
   - Default
   - TransparentFX

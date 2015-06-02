@@ -2063,6 +2063,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bamboo: {fileID: 112854, guid: 61b20463652bcf0428c6c54c656e18d6, type: 2}
+--- !u!114 &1281226953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1281226944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63a4a703a6a3b9947995ba3fa3bc6e46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Apple: {fileID: 2120233069}
+  appleIntensity: 3
 --- !u!1001 &1299007987
 Prefab:
   m_ObjectHideFlags: 0
@@ -3395,7 +3408,7 @@ GameObject:
   - 23: {fileID: 2120233070}
   m_Layer: 0
   m_Name: Apple
-  m_TagString: Untagged
+  m_TagString: Apple
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
