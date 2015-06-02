@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Climbing : MonoBehaviour {
+public class BackgroundSpawning : MonoBehaviour {
 	private float nextTreeSpawn = 5.0f;
 
 	public GameObject Background;
