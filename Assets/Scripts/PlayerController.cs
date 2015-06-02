@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
 	}
 
 	void FixedUpdate () {
@@ -114,7 +115,32 @@ public class PlayerController : MonoBehaviour {
 		
 		if(Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Mouse1)){
 			anim.SetBool("ClimbingRight",true);
-			anim.Play("ClimbingRight",-1,Mathf.Clamp01(-((mousePosition.y - Camera.main.WorldToScreenPoint(transform.position).y)/Screen.height) + 0.5f));
+			if(Input.GetKey(KeyCode.Mouse0)&& !Input.GetKey(KeyCode.Mouse1))
+			{
+				anim.SetInteger("Climbing",3);
+				anim.Play("ClimbingRight",-1,Mathf.Clamp01(-((mousePosition.y - Camera.main.WorldToScreenPoint(transform.position).y)/Screen.height) + 0.5f));
+			}
+
+			if(!Input.GetKey(KeyCode.Mouse0)&& !Input.GetKey(KeyCode.Mouse1))
+			{
+				anim.SetInteger("Climbing",0);
+			}
+
+			if(!Input.GetKey(KeyCode.Mouse0)&& Input.GetKey(KeyCode.Mouse1))
+			{
+				anim.SetInteger("Climbing",1);
+				anim.Play("ClimbingLeft",-1,Mathf.Clamp01(-((mousePosition.y - Camera.main.WorldToScreenPoint(transform.position).y)/Screen.height) + 0.5f));
+			}
+
+			if(Input.GetKey(KeyCode.Mouse0)&& Input.GetKey(KeyCode.Mouse1))
+			{
+				anim.SetInteger("Climbing",2);
+				anim.Play("ClimbingBoth",-1,Mathf.Clamp01(-((mousePosition.y - Camera.main.WorldToScreenPoint(transform.position).y)/Screen.height) + 0.5f));
+			}
+
+
+
+			//anim.Play("ClimbingLeft",-1,Mathf.Clamp01(-((mousePosition.y - Camera.main.WorldToScreenPoint(transform.position).y)/Screen.height) + 0.5f));
 
 			if(!grabbed){
 				tempPandaPosition=transform.position;
@@ -153,7 +179,11 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		if((Input.GetMouseButtonUp(0) && !Input.GetKey(KeyCode.Mouse1)) || (Input.GetMouseButtonUp(1) && !Input.GetKey(KeyCode.Mouse0)) || (Input.GetMouseButtonUp(1) && Input.GetMouseButtonUp(0))){
-			anim.SetBool("ClimbingRight",false);
+
+			if(!Input.GetKey(KeyCode.Mouse0)&& !Input.GetKey(KeyCode.Mouse1))
+			{
+				anim.SetInteger("Climbing",0);
+			}
 			grabbed = false;
 			for(int i = 1; i<15; ++i){
 
