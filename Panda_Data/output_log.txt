@@ -1,0 +1,55 @@
+Initialize engine version: 5.0.1f1 (5a2e8fe35a68)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 760 (ID=0x1187)
+    Vendor:   NVIDIA
+    VRAM:     1985 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: E:\Projekty Unity\ProjektPanda\Panda_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading E:\Projekty Unity\ProjektPanda\Panda_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: E:\Projekty Unity\ProjektPanda\Panda_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading E:\Projekty Unity\ProjektPanda\Panda_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: E:\Projekty Unity\ProjektPanda\Panda_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading E:\Projekty Unity\ProjektPanda\Panda_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: E:\Projekty Unity\ProjektPanda\Panda_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading E:\Projekty Unity\ProjektPanda\Panda_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.069 seconds
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: E:\Projekty Unity\ProjektPanda\Panda_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: E:\Projekty Unity\ProjektPanda\Panda_Data\Managed\System.dll (this message is harmless)
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: 165c -> priority: 1 
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.747652 ms
+
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 624.
+Total: 0.229725 ms (FindLiveObjects: 0.031696 ms CreateObjectMapping: 0.013584 ms MarkObjects: 0.179614 ms  DeleteObjects: 0.004528 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+NullReferenceException
+  at (wrapper managed-to-native) UnityEngine.GameObject:get_transform ()
+  at CameraMover.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException
+  at (wrapper managed-to-native) UnityEngine.GameObject:get_transform ()
+  at EndGamer.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+UnloadTime: 1.452313 ms
+
+Unloading 54 unused Assets to reduce memory usage. Loaded Objects now: 268.
+Total: 1.468916 ms (FindLiveObjects: 0.032904 ms CreateObjectMapping: 0.017810 ms MarkObjects: 0.133428 ms  DeleteObjects: 1.284471 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.318778 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 626.
+Total: 0.153351 ms (FindLiveObjects: 0.024451 ms CreateObjectMapping: 0.012074 ms MarkObjects: 0.112598 ms  DeleteObjects: 0.003924 ms)
+

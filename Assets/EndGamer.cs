@@ -39,7 +39,8 @@ public class EndGamer : MonoBehaviour {
 	void OnTriggerExit(Collider other) {
 		if (other.gameObject.CompareTag ("Player")) {
 			endGame.text = "You Lose";
-			Time.timeScale = 0;
+			Application.LoadLevel("Menu");
+
 		}
 
 
