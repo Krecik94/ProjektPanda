@@ -11,7 +11,7 @@ GameObject:
   - 136: {fileID: 13661082}
   m_Layer: 0
   m_Name: bamboo pivot
-  m_TagString: Untagged
+  m_TagString: Bamboo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,7 +26,7 @@ GameObject:
   - 4: {fileID: 462958}
   m_Layer: 0
   m_Name: bamboo
-  m_TagString: Untagged
+  m_TagString: Bamboo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67,7 +67,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 112854}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.96897292, y: -.259418488, z: 0}
+  m_LocalPosition: {x: -2.46199989, y: 0, z: .204999998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 462958}
@@ -80,7 +80,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 165130}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .319999993, y: -.56099999, z: .275000006}
+  m_LocalPosition: {x: 0, y: -.56099999, z: .275000006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 419746}
