@@ -10,9 +10,10 @@ GameObject:
   - 4: {fileID: 421476}
   - 33: {fileID: 3335866}
   - 23: {fileID: 2323416}
+  - 65: {fileID: 6517246}
   m_Layer: 0
   m_Name: default
-  m_TagString: Untagged
+  m_TagString: Apple
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25,7 +26,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 407110}
-  - 114: {fileID: 11422322}
+  - 114: {fileID: 11409552}
   m_Layer: 0
   m_Name: Pickup
   m_TagString: Apple
@@ -40,7 +41,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 181572}
   m_LocalRotation: {x: 0, y: 0, z: .130526215, w: .991444886}
-  m_LocalPosition: {x: .193000004, y: 2.19700003, z: -.654999971}
+  m_LocalPosition: {x: -2.63324189, y: -2.57138755e-17, z: -.42097497}
   m_LocalScale: {x: .200000003, y: .200000003, z: .200000003}
   m_Children:
   - {fileID: 421476}
@@ -53,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 181400}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -.939999998, y: .129999995, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 407110}
@@ -89,7 +90,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 181400}
   m_Mesh: {fileID: 4300000, guid: 152320936ec421943a39b15d2e7d8b5a, type: 3}
---- !u!114 &11422322
+--- !u!65 &6517246
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 181400}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.09438896, y: 2.82814312, z: 1.47026491}
+  m_Center: {x: -.0557404757, y: .780020475, z: .524178505}
+--- !u!114 &11409552
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -97,7 +110,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 181572}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51d93cdd3ed3b304199934d39e78afed, type: 3}
+  m_Script: {fileID: 11500000, guid: 91109a17fdd917d44a869c2d91b9ca70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &100100000
