@@ -1992,7 +1992,7 @@ MonoBehaviour:
   speedY: 100
   speedYMax: 10
   speedX: 100
-  speedXMax: 1
+  speedXMax: 2
   speedXThreshold: .100000001
   mouseDelta: {fileID: 1063298773}
   pandaYSpeed: {fileID: 1550575862}
@@ -3423,7 +3423,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 840ee30cc82159c4dbbbc46680f6b7c3, type: 2}
+  - {fileID: 2100000, guid: 4913ae0e3dadf38459e9bcf969a1f1e8, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
